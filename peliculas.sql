@@ -2,12 +2,13 @@ CREATE DATABASE IF NOT EXISTS `peliculas` DEFAULT CHARACTER SET utf8 COLLATE utf
 USE `peliculas`;
 
 -- TABLA: USUARIOS
+-- 0=invitado 1=general 2=admin
 CREATE TABLE `usuarios` (
     `id_usuario` INT AUTO_INCREMENT PRIMARY KEY,
     `nombre` VARCHAR(40) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `foto_perfil` VARCHAR(255) DEFAULT 'default.jpg',
-    `nivel_usuario` int(11) NOT NULL DEFAULT 0,     --0=invitado 1=general 2=admin
+    `nivel_usuario` int(11) NOT NULL DEFAULT 0, 
     `fecha_registro` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -22,13 +23,13 @@ CREATE TABLE `peliculas` (
 );
 
 -- TABLA: COMENTARIOS
+-- CASCADE SIGNIFICA QUE SI SE ELIMINA UN USUARIO/PELICULA, TAMBIÉN SE ELIMINAN LOS COMENTARIOS ASOCIADOS A EL.
 CREATE TABLE `comentarios` (
     `id_comentario` INT AUTO_INCREMENT PRIMARY KEY,
     `id_pelicula` INT NOT NULL,
     `id_usuario` INT NOT NULL,
     `contenido` TEXT NOT NULL,
     `fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    -- CASCADE SIGNIFICA QUE SI SE ELIMINA UN USUARIO/PELICULA, TAMBIÉN SE ELIMINAN LOS COMENTARIOS ASOCIADOS A EL.
     FOREIGN KEY (`id_pelicula`) REFERENCES peliculas(id_pelicula) ON DELETE CASCADE, 
     FOREIGN KEY (`id_usuario`) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
 );
