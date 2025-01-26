@@ -1,7 +1,5 @@
 <?php
 
-
-
 class Modelo extends PDO {
 
     protected $conexion;
