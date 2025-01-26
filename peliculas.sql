@@ -1,17 +1,17 @@
 CREATE DATABASE IF NOT EXISTS `peliculas` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `peliculas`;
 
---TABLA: USUARIOS
+-- TABLA: USUARIOS
 CREATE TABLE `usuarios` (
     `id_usuario` INT AUTO_INCREMENT PRIMARY KEY,
     `nombre` VARCHAR(40) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `foto_perfil` VARCHAR(255) DEFAULT 'default.jpg',
-    `nivel_usuario` int(11) NOT NULL DEFAULT 0, --0=invitado 1=general 2=admin
+    `nivel_usuario` int(11) NOT NULL DEFAULT 0,     --0=invitado 1=general 2=admin
     `fecha_registro` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
---TABLA: PELICULAS
+-- TABLA: PELICULAS
 CREATE TABLE `peliculas` (
     `id_pelicula` INT AUTO_INCREMENT PRIMARY KEY,
     `titulo` VARCHAR(255) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE `peliculas` (
     `categoria` VARCHAR(100) NOT NULL
 );
 
---TABLA: COMENTARIOS
+-- TABLA: COMENTARIOS
 CREATE TABLE `comentarios` (
     `id_comentario` INT AUTO_INCREMENT PRIMARY KEY,
     `id_pelicula` INT NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE `comentarios` (
     FOREIGN KEY (`id_usuario`) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
 );
 
---inserción de peliculas
+-- INSERCION DE PELICULAS EN TABLA PELICULAS
 INSERT INTO `peliculas` (`titulo`, `descripción`, `anio`, `portada`, `categoria`) VALUES 
 ('La Era de Hielo', 'Una aventura en un mundo prehistórico', 2002, 'la_era_de_hielo.jpg', 'Animación'),
 ('El Señor de los Anillos: La Comunidad del Anillo', 'El primer capítulo de una épica aventura', 2001, 'senor_de_los_anillos.jpg', 'Fantasía'),
