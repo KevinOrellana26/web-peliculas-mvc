@@ -5,7 +5,7 @@
         <!-- Primera línea de botones -->
         <div class="col-12 d-flex justify-content-center flex-wrap">
             <a href="index.php?ctl=home" class="mx-2 my-1">Inicio</a>
-            <a href="index.php?ctl=listarPeliculas" class="mx-2 my-1">Películas</a>
+            <a href="index.php?ctl=mostrarPeliculas" class="mx-2 my-1">Películas</a>
             <a href="index.php?ctl=buscarPorNombre" class="mx-2 my-1">Buscar por Nombre</a>
             <a href="index.php?ctl=buscarPorAnyio" class="mx-2 my-1">Buscar por Año</a>
             <a href="index.php?ctl=listarUsuarios" class="mx-2 my-1">Listar Usuarios</a>
@@ -30,4 +30,3 @@
         </div>
     </div>
 </div>
-
