@@ -22,4 +22,12 @@ class Usuario extends Modelo
         $result->execute();
         return $result;
     }
+    public function buscarFotoPerfil($nombreUsuario)
+    {
+        $consulta = "SELECT foto_perfil FROM peliculas.usuarios WHERE nombre_usuario = :nombreUsuario";
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':nombreUsuario', $nombreUsuario);
+        $result->execute();
+        return $result->fetchColumn(); // Devuelve solo el valor de la columna 'foto_perfil'
+    }
 }
