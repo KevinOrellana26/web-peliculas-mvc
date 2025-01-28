@@ -1,21 +1,26 @@
-<?php ob_start();
-if (isset($params['mensaje'])) {
-    echo $params['mensaje'];
-} ?>
-<table>
-    <tr>
-        <th>
-            <h4><b>Peliculas</b></h4><br>
-        </th>
-    </tr>
+<?php ob_start(); ?>
 
-    <?php foreach ($params['peliculas'] as $pelicula) : ?>
-        <tr>
-            <td><a href="index.php?ctl=verPelicula&id_pelicula=<?php echo $pelicula['id_pelicula'] ?>" class="tablaP">
-                    <?php echo $pelicula['titulo'] ?></a></td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+<div class="container text-center py-2">
+    <div class="col-md-12">
+        <?php if (isset($params['mensaje'])) : ?>
+            <b><span style="color: rgb(255, 0, 0);"><?php echo $params['mensaje'] ?></span></b>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="container py-4">
+    <div class="row">
+        <?php foreach ($params['peliculas'] as $index => $pelicula) : ?>
+            <!-- Columna para cada portada -->
+            <div class="col-md-4 text-center">
+                <a href="index.php?ctl=verPelicula&id_pelicula=<?php echo $pelicula['id_pelicula'] ?>">
+                    <img src="img/<?php echo $pelicula['portada']; ?>" alt="Portada" class="img-fluid rounded shadow" style="max-height: 300px;">
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
 
 <?php $contenido = ob_get_clean() ?>
 
