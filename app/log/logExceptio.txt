@@ -1,0 +1,4 @@
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'nombre_usuario' in 'where clause'0.90595500 1738092158
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'nombre_usuario' in 'where clause'0.28239100 1738104011
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'nombre_usuario' in 'where clause'0.96371100 1738104030
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'nombre_usuario' in 'where clause'0.14724000 1738104160

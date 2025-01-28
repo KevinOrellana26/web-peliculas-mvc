@@ -93,4 +93,12 @@ class Pelicula extends Modelo
         $result->execute();
         return $result;
     }
+
+    public function listarComentariosPorPelicula($idPelicula){
+        $consulta = "SELECT * FROM peliculas.comentarios WHERE id_pelicula = :id_pelicula ORDER BY fecha DESC";
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':id_pelicula', $idPelicula, PDO::PARAM_INT);
+        $result->execute();
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

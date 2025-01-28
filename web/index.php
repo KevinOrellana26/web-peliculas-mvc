@@ -35,7 +35,10 @@ $map = array(
 
     //acciones de peliculas
     'mostrarPeliculas' => array('controller' => 'PeliculasController', 'action' => 'mostrarPeliculas', 'nivel_usuario' => 0),
+    'verPelicula' => array('controller' => 'PeliculasController', 'action' => 'verPelicula', 'nivel_usuario' => 0),
 
+    //acciones de comentarios
+    'guardarComentario' => array('controller' => 'ComentarioController', 'action' => 'guardarComentario', 'nivel_usuario' => 1),
 );
 
 //Parseo de la ruta
