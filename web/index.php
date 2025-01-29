@@ -9,7 +9,7 @@ require_once __DIR__ . '/../app/modelo/classUsuario.php';
 require_once __DIR__ . '/../app/controlador/Controller.php';
 require_once __DIR__ . '/../app/controlador/UsuarioController.php';
 require_once __DIR__ . '/../app/controlador/PeliculasController.php';
-
+require_once __DIR__ . '/../app/controlador/ComentarioController.php';
 
 //inicio de sesion
 session_start();
@@ -38,6 +38,8 @@ $map = array(
     'buscarPorTitulo' => array('controller' => 'PeliculasController', 'action' => 'buscarPorTitulo', 'nivel_usuario' => 0),
     'verPelicula' => array('controller' => 'PeliculasController', 'action' => 'verPelicula', 'nivel_usuario' => 0),
 
+    //acciones de comentarios
+    'guardarComentario' => array('controller' => 'ComentarioController', 'action' => 'guardarComentario', 'nivel_usuario' => 1),
 );
 
 //Parseo de la ruta

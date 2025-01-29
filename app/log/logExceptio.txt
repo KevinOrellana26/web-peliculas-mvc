@@ -1,0 +1,11 @@
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'nombre_usuario' in 'where clause'0.90595500 1738092158
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'nombre_usuario' in 'where clause'0.28239100 1738104011
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'nombre_usuario' in 'where clause'0.96371100 1738104030
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'nombre_usuario' in 'where clause'0.14724000 1738104160
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens0.89014000 1738146410
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens0.57494700 1738146416
+SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id_pelicula' in where clause is ambiguous0.85242100 1738146513
+SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id_pelicula' in where clause is ambiguous0.64135200 1738146617
+SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id_pelicula' in where clause is ambiguous0.58513700 1738146871
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.id_usuario, comentario.fecha FROM peliculas INNER JOIN comentarios ON pelicu...' at line 10.34785500 1738147853
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'comentario.fecha' in 'field list'0.29119500 1738147883

@@ -92,7 +92,7 @@ class UsuarioController extends Controller
             $apellido = recoge('apellido');
             $nombreUsuario = recoge('nombreUsuario');
             $contrasenya = recoge('contrasenya');
-            $confirmarContrasenya = recoge('confirmarContrasenya');
+            $confirmarContrasenya = recoge('contrasenya2');
 
             // Validación de los campos del formulario
             cTexto($nombre, "nombre", $errores);
