@@ -94,8 +94,8 @@ class Pelicula extends Modelo
         return $result;
     }
 
-    public function listarComentariosPorPelicula($idPelicula){
-        $consulta = "SELECT * FROM peliculas.comentarios WHERE id_pelicula = :id_pelicula ORDER BY fecha DESC";
+    public function listarComentariosPorPelicula($idPelicula){ //devuelve todos los comentarios de la pelicula
+        $consulta = "SELECT comentarios.contenido, usuarios.nombre_usuario, comentarios.fecha FROM peliculas INNER JOIN comentarios ON peliculas.id_pelicula=comentarios.id_pelicula INNER JOIN usuarios ON comentarios.id_usuario=usuarios.id_usuario WHERE comentarios.id_pelicula = :id_pelicula";
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':id_pelicula', $idPelicula, PDO::PARAM_INT);
         $result->execute();
