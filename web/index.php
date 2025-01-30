@@ -37,12 +37,14 @@ $map = array(
     'mostrarPeliculas' => array('controller' => 'PeliculasController', 'action' => 'mostrarPeliculas', 'nivel_usuario' => 0),
     'buscarPorTitulo' => array('controller' => 'PeliculasController', 'action' => 'buscarPorTitulo', 'nivel_usuario' => 0),
     'verPelicula' => array('controller' => 'PeliculasController', 'action' => 'verPelicula', 'nivel_usuario' => 0),
-    'insertarP' => array('controller' => 'PeliculasController', 'action' => 'insertarPelicula', 'nivel_usuario' => 1),
+    'insertarP' => array('controller' => 'PeliculasController', 'action' => 'insertarPelicula', 'nivel_usuario' => 2),
     'busquedaCombinada' => array('controller' => 'PeliculasController', 'action' => 'busquedaCombinada', 'nivel_usuario' => 1),
+    'eliminarPelicula' => array('controller' => 'PeliculasController', 'action' => 'eliminarPelicula', 'nivel_usuario' => 2),
 
 
     //acciones de comentarios
     'guardarComentario' => array('controller' => 'ComentarioController', 'action' => 'guardarComentario', 'nivel_usuario' => 1),
+    'eliminarComentario' => array('controller' => 'ComentarioController', 'action' => 'eliminarComentario', 'nivel_usuario' => 2),
 );
 
 //Parseo de la ruta
@@ -82,5 +84,4 @@ if (method_exists($controlador['controller'], $controlador['action'])) { //si ex
 } else { // Si no existe el metodo/accion en el Controlador
     header('Status: 404 Not Found');
     echo "<html><body><h1>Error 404: El controlador <i>" . $controlador['controller'] . " -> " . $controlador['action'] . " no existe</i></h1></body></html>";
-    console_log("entrarErrorInicio");
 }
