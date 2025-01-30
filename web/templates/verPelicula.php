@@ -14,19 +14,36 @@
         <!-- titulo-->
         <h3 class="text-center mb-4"><?php echo $params['peliculas']['titulo']; ?></h3>
 
-        <!-- 1 fila, 3 columnas -->
-        <div class="row align-items-center">
-            <div class="col-md-4 text-end">
-                <p><b>Descripción:</b></p>
-                <p><b>Año:</b></p>
-                <p><b>Categoría:</b></p>
+        <!-- 1 fila, 2 columnas. En la primer columna irá el titulo y el valor. En la segunda columna la portada --> 
+
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col text-end">
+                        <p><b>Descripción:</b></p>
+                    </div>
+                    <div class="col text-start">
+                        <p><?php echo $params['peliculas']['descripción']; ?></p>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col text-end">
+                        <p><b>Año:</b></p>
+                    </div>
+                    <div class="col text-start">
+                        <p><?php echo $params['peliculas']['anio']; ?></p>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col text-end">
+                        <p><b>Categoría:</b></p>
+                    </div>
+                    <div class="col text-start">
+                        <p><?php echo $params['peliculas']['categoria']; ?></p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 text-start">
-                <p><?php echo $params['peliculas']['descripción']; ?></p>
-                <p><?php echo $params['peliculas']['anio']; ?></p>
-                <p><?php echo $params['peliculas']['categoria']; ?></p>
-            </div>
-            <div class="col-md-4 text-center">
+            <div class="col text-center">
                 <img src="img/<?php echo $params['peliculas']['portada']; ?>" alt="Portada" class="img-fluid rounded shadow" style="max-height: 300px;">
             </div>
         </div>

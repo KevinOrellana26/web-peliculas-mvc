@@ -1,11 +1,5 @@
 <?php ob_start(); ?>
 
-<div class="container text-center p-2">
-    <div class="col-md-12" id="cabecera">
-        <h1 class="h1">Añadir una pelicula</h1>
-    </div>
-</div>
-
 <div class="container text-center py-2">
     <div class="col-md-12">
         <?php if (isset($params['mensaje'])) : ?>

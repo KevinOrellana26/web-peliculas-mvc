@@ -12,30 +12,23 @@
 
 <body>
     <!-- HEADER -->
-    <div class="container-fluid bg-dark text-white">
-        <div class="row p-2">
-            <div class="col text-center p-2">
+    <div class="container-fluid bg-dark text-white py-5 text-center">
+        <div class="row align-items-center">
+            <div class="col">
                 <h1>PELICULAS</h1>
             </div>
-            <div class="col text-center p-2">
-                <form action="index.php?ctl=buscarPorTitulo" METHOD="post" NAME="buscarTitulo" ENCTYPE="multipart/form-data">
-                    <div class="col-md-6">
-                        <input type="search" class="form-control" id="buscar" name="buscar" placeholder="Buscar Pelicula">
-                    </div>
-                    <div class="col-md-6">
-                        <input type="submit" class="btn btn-primary me-2" NAME="buscarPorTitulo" VALUE="Buscar">
-                    </div>
+            <div class="col text-center">
+                <form action="index.php?ctl=buscarPorTitulo" METHOD="post" NAME="buscarTitulo" ENCTYPE="multipart/form-data" class="d-flex">
+                    <input type="search" class="form-control me-4" id="buscar" name="buscar" placeholder="Buscar Pelicula">
+                    <input type="submit" class="btn btn-primary" NAME="buscarPorTitulo" VALUE="Buscar">
                 </form>
             </div>
-            <div class="col text-center p-2">
-                <!-- <a href="index.php?ctl=iniciarSesion">Iniciar Sesión</a> / <a href="index.php?ctl=registrarse">Registrarse</a> -->
-                <?php
+            <?php
                 if (!isset($menu)) { //si la variable $menu no ha sido definida antes o el valor es null, se muestra el 'menuInvitado.php'
                     $menu = 'menuSesionGeneral.php';
                 }
                 include $menu; //si está definida y tiene valor, se incluye en esta página el valor del $menu
-                ?>
-            </div>
+            ?>
         </div>
     </div>
 
