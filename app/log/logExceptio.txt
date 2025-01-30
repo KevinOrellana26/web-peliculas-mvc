@@ -9,3 +9,5 @@ SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id_pelicula' in wh
 SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id_pelicula' in where clause is ambiguous0.58513700 1738146871
 SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.id_usuario, comentario.fecha FROM peliculas INNER JOIN comentarios ON pelicu...' at line 10.34785500 1738147853
 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'comentario.fecha' in 'field list'0.29119500 1738147883
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descripcion' in 'field list'0.82835600 1738175060
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descripcion' in 'field list'0.43624200 1738175102
