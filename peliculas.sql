@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-01-2025 a las 19:50:33
+-- Tiempo de generación: 30-01-2025 a las 18:34:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -36,6 +36,13 @@ CREATE TABLE `comentarios` (
   `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id_comentario`, `id_pelicula`, `id_usuario`, `contenido`, `fecha`) VALUES
+(1, 3, 2, 'THANOS PERUANO', '2025-01-29 16:29:29');
+
 -- --------------------------------------------------------
 
 --
@@ -58,7 +65,11 @@ CREATE TABLE `peliculas` (
 INSERT INTO `peliculas` (`id_pelicula`, `titulo`, `descripción`, `anio`, `portada`, `categoria`) VALUES
 (1, 'La Era de Hielo', 'Una aventura en un mundo prehistórico', '2002', 'la_era_de_hielo.jpg', 'Animación'),
 (2, 'El Señor de los Anillos: La Comunidad del Anillo', 'El primer capítulo de una épica aventura', '2001', 'senor_de_los_anillos.jpg', 'Fantasía'),
-(3, 'Avengers: Endgame', 'La lucha final contra Thanos para salvar el universo', '2019', 'avengers_endgame.jpg', 'Acción');
+(3, 'Avengers: Endgame', 'Después de los eventos devastadores de \"Avengers: Infinity War\", el universo está en ruinas debido a las acciones de Thanos, el Titán Loco. Con la ayuda de los aliados que quedaron, los Vengadores deberán reunirse una vez más para intentar detenerlo y restaurar el orden en el universo de una vez por todas.', '2019', 'avengers_endgame.jpg', 'Acción'),
+(4, 'tortugas ninja', 'La oscuridad se cierne sobre Nueva York desde que Shredder y su \'Clan del pie\' la controlan. Mientras la periodista April O\'Neil intenta averiguar qué está pasando en la ciudad, presencia cómo 4 tortugas mutuantes frustran un golpe del malvado Clan.', '2014', 'portada_679a72bbe4fbf7.42490706.jpg', 'Accion'),
+(5, 'Spider-Man: Across the Spider-Verse', 'Tras encontrarse con Gwen Stacy, el agradable vecindario de Brooklyn en el que vive Mike Morales se ve transportado al multiverso, donde Spiderman conocerá a nuevos personajes y vivirá aventuras increíbles.', '2023', 'portada_679a74a18f0671.59291323.jpg', 'Ciencia ficcion'),
+(6, 'We Live in Time', 'We Live in Time es una película de drama romántico dirigida por John Crowley a partir de un guion de Nick Payne. La película usa una narrativa no lineal', '2024', 'portada_679a74f800da94.51946832.jpg', 'Romance'),
+(7, 'Spider-Man 2', 'Como si Peter Parker no tuviera suficiente con sus propios problemas, estudios y su amor por Mary Jane, ahora tiene que salvar a la ciudad de un nuevo villano, el Doctor Octopus.', '2004', 'portada_679a7634ad3724.67350380.jpg', 'Acción');
 
 -- --------------------------------------------------------
 
@@ -82,7 +93,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `nombre_usuario`, `contrasenya`, `foto_perfil`, `nivel_usuario`, `fecha_registro`) VALUES
-(1, 'joan', 'morales', 'joan', '1234', 'default.jpg', 1, '2025-01-26 18:40:47');
+(2, 'joan', 'morales', 'joan', '$2y$10$W1D9EJWoK0C.YU8g23ejPusou1RX7Ya.uVKlIG.ITMItVJ4zHXS2e', 'perfil_679a56f04a7e64.43331986.jpg', 2, '2025-01-29 16:27:28'),
+(3, 'joan', 'morales', 'joan2', '$2y$10$.TLDdI/MDSs5QoRx9761K.uvbOZWPFL/bpo.R5gJiqUFA0RaFq5VW', 'perfil_679a593c891af4.75390223.jpg', 1, '2025-01-29 16:37:16');
 
 --
 -- Índices para tablas volcadas
@@ -117,19 +129,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

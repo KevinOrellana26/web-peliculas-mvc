@@ -18,10 +18,13 @@
                 <h1>PELICULAS</h1>
             </div>
             <div class="col text-center p-2">
-                <form action="">
-                    <label for="buscar"></label>
-                    <input type="search" id="buscar" name="buscar" placeholder="Buscar Pelicula">
-                    <input type="submit">
+                <form action="index.php?ctl=buscarPorTitulo" METHOD="post" NAME="buscarTitulo" ENCTYPE="multipart/form-data">
+                    <div class="col-md-6">
+                        <input type="search" class="form-control" id="buscar" name="buscar" placeholder="Buscar Pelicula">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-primary me-2" NAME="buscarPorTitulo" VALUE="Buscar">
+                    </div>
                 </form>
             </div>
             <div class="col text-center p-2">

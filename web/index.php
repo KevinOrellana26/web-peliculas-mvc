@@ -35,7 +35,11 @@ $map = array(
 
     //acciones de peliculas
     'mostrarPeliculas' => array('controller' => 'PeliculasController', 'action' => 'mostrarPeliculas', 'nivel_usuario' => 0),
+    'buscarPorTitulo' => array('controller' => 'PeliculasController', 'action' => 'buscarPorTitulo', 'nivel_usuario' => 0),
     'verPelicula' => array('controller' => 'PeliculasController', 'action' => 'verPelicula', 'nivel_usuario' => 0),
+    'insertarP' => array('controller' => 'PeliculasController', 'action' => 'insertarPelicula', 'nivel_usuario' => 1),
+    'busquedaCombinada' => array('controller' => 'PeliculasController', 'action' => 'busquedaCombinada', 'nivel_usuario' => 1),
+
 
     //acciones de comentarios
     'guardarComentario' => array('controller' => 'ComentarioController', 'action' => 'guardarComentario', 'nivel_usuario' => 1),

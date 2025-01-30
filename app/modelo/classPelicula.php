@@ -40,11 +40,24 @@ class Pelicula extends Modelo
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function buscarPeliculaCategoria($categoria)
+    public function buscarPeliculasPorAnioYCategoria($categoria, $anio)
     {
-        $consulta = "SELECT * FROM peliculas.peliculas WHERE categoria COLLATE utf8_general_ci =:categoria;";
+        $consulta = "SELECT * FROM peliculas.peliculas WHERE categoria like :categoria AND anio= :anio;";
 
         $result = $this->conexion->prepare($consulta);
+        $categoria = "%" . $categoria . "%";
+        $result->bindParam(':categoria', $categoria);
+        $result->bindParam(':anio', $anio);
+        $result->execute();
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function buscarPeliculaCategoria($categoria)
+    {
+        $consulta = "SELECT * FROM peliculas.peliculas WHERE categoria like :categoria;";
+
+        $result = $this->conexion->prepare($consulta);
+        $categoria = "%" . $categoria . "%";
         $result->bindParam(':categoria', $categoria);
         $result->execute();
         return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -52,9 +65,9 @@ class Pelicula extends Modelo
 
 
 
-    public function insertarLibro($titulo, $descripcion, $anio, $portada, $categoria)
+    public function insertarPelicula($titulo, $descripcion, $anio, $portada, $categoria)
     {
-        $consulta = "INSERT INTO biblioteca.listaLibros (titulo, descripcion, anio, portada, categoria ) VALUES (:titulo, :descripcion, :anio, :portada, :categoria)";
+        $consulta = "INSERT INTO peliculas.peliculas (titulo, descripción, anio, portada, categoria ) VALUES (:titulo, :descripcion, :anio, :portada, :categoria)";
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':titulo', $titulo);
         $result->bindParam(':descripcion', $descripcion);
@@ -65,16 +78,16 @@ class Pelicula extends Modelo
         return $result;
     }
 
-    public function eliminarLibro($id)
+    public function eliminarPelicula($id)
     {
-        $consulta = "DELETE FROM biblioteca.listaLibros WHERE id = :id";
+        $consulta = "DELETE FROM peliculas.peliculas  WHERE id_pelicula = :id";
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->execute();
         return $result;
     }
 
-    public function modificarLibro($id, $titulo, $descripcion, $anio, $portada, $categoria)
+    public function modificarPelicula($id, $titulo, $descripcion, $anio, $portada, $categoria)
     {
         $consulta = "UPDATE biblioteca.listaLibros 
                  SET titulo = :titulo, 
@@ -94,7 +107,8 @@ class Pelicula extends Modelo
         return $result;
     }
 
-    public function listarComentariosPorPelicula($idPelicula){ //devuelve todos los comentarios de la pelicula
+    public function listarComentariosPorPelicula($idPelicula)
+    { //devuelve todos los comentarios de la pelicula
         $consulta = "SELECT comentarios.contenido, usuarios.nombre_usuario, comentarios.fecha FROM peliculas INNER JOIN comentarios ON peliculas.id_pelicula=comentarios.id_pelicula INNER JOIN usuarios ON comentarios.id_usuario=usuarios.id_usuario WHERE comentarios.id_pelicula = :id_pelicula";
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':id_pelicula', $idPelicula, PDO::PARAM_INT);
