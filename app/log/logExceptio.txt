@@ -11,3 +11,5 @@ SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in you
 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'comentario.fecha' in 'field list'0.29119500 1738147883
 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descripcion' in 'field list'0.82835600 1738175060
 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'descripcion' in 'field list'0.43624200 1738175102
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.contenido, usuarios.nombre_usuario, comentarios.fecha FROM peliculas INNER J...' at line 10.35797600 1738269569
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.contenido, usuarios.nombre_usuario, comentarios.fecha FROM peliculas INNER J...' at line 10.73626300 1738269573

@@ -23,7 +23,7 @@ class ComentarioController extends Controller
                 }
 
                 //comprobar campos formulario.
-                cTexto($comentario, "comentario", $errores);
+                cDescripcion($comentario, "comentario", $errores);
 
                 if (empty($errores)) {
                     //si no ha habido problema, creo el modelo y hago inserción
@@ -56,5 +56,53 @@ class ComentarioController extends Controller
         $menu2 = $this->cargaMenuAcciones();
 
         require __DIR__ . '/../../web/templates/verPelicula.php';
+    }
+
+    public function eliminarComentario()
+    {
+        try {
+            if (!isset($_SESSION['nivel_usuario'])) { //si no está logueado, se redirige a iniciarSesion
+                return header('Location: index.php?ctl=iniciarSesion');
+            }
+
+            $params = array(
+                'idComentario' => ''
+            );
+            $errores = array();
+            if (isset($_POST['bEliminarCom'])) {
+                $comentario = recoge('id_comentario');
+                $idPelicula = recoge('id_pelicula');
+
+                if (empty($errores)) {
+                    //si no ha habido problema, creo el modelo y hago inserción
+                    $m = new Comentario();
+                    if ($m->eliminarComentario($comentario)) {
+                        header("Location: index.php?ctl=verPelicula&id_pelicula=$idPelicula");
+                        exit();
+                    } else {
+                        $params = array(
+                            'comentario' => $comentario
+                        );
+                        $params['mensaje'] = "Ha habido un error al insertar el comentario.";
+                    }
+                } else {
+                    $params = array(
+                        'comentario' => $comentario
+                    );
+                    $params['mensaje'] = "Hay datos incorrectos.";
+                }
+            }
+        } catch (Exception $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logExceptio.txt");
+            header('Location: index.php?ctl=error');
+        } catch (Error $e) {
+            error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
+            header('Location: index.php?ctl=error');
+        }
+
+        $menu = $this->cargaMenuSesiones();
+        $menu2 = $this->cargaMenuAcciones();
+
+        require __DIR__ . '/../../web/templates/verPeliculaAdmin.php';
     }
 }

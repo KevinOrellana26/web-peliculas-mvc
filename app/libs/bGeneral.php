@@ -157,21 +157,17 @@ function cTexto(string $text, string $campo, array &$errores, int $max = 30, int
     return false;
 }
 
-function cDescripcion(string $text, string $campo, array &$errores, int $max = 255, int $min = 1, bool $espacios = TRUE, bool $case = TRUE): bool
+function cDescripcion(string $text, string $campo, array &$errores, int $max = 500, int $min = 1): bool
 {
-    // Modificar $case y $espacios según los parámetros
-    $case = ($case === TRUE) ? "i" : "";
-    $espacios = ($espacios === TRUE) ? " " : "";
-
-    // Ajustar el patrón para incluir caracteres especiales y permitir mayúsculas
-    if ((preg_match("/^[a-zA-ZñÑ0-9$espacios.,'\"!?;:-]{" . $min . "," . $max . "}$/u$case", sinTildes($text)))) {
-        return true;
+    // Verificar la longitud del texto
+    if (mb_strlen($text) < $min || mb_strlen($text) > $max) {
+        $errores[$campo] = "El campo $campo debe tener entre $min y $max caracteres.";
+        return false;
     }
 
-    // Si falla la validación, agregar un error
-    $errores[$campo] = "Error en el campo $campo";
-    return false;
+    return true;
 }
+
 
 
 

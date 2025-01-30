@@ -2,3 +2,5 @@ Call to a member function listarComentariosPorPelicula() on null0.39134900 17381
 Call to a member function listarComentariosPorPelicula() on null0.56211400 1738102091
 Call to a member function listarComentariosPorPelicula() on null0.55942700 1738102384
 Undefined constant PDO::PARAM_INIT0.72109800 1738102449
+Call to undefined method Comentario::eliminarPelicula()0.87156400 1738272910
+Call to undefined method Comentario::eliminarPelicula()0.61418000 1738272946
