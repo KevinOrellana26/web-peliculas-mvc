@@ -1,11 +1,5 @@
 <?php ob_start() ?>
 
-<!-- <div class="container text-center">
-    <div class="col-md-12" id="cabecera">
-        <h1 class="h1Inicio">Peliculas</h1>
-    </div>
-</div> -->
-
 <div class="container text-center py-2">
     <div class="col-md-12">
         <?php if (isset($params['mensaje'])) : ?>
@@ -37,10 +31,6 @@
         <button type="submit" name="bIniciarSesion" class="btn btn-primary me-2">Aceptar</button>
     </form>
 </div>
-
-
-
-
 
 <?php $contenido = ob_get_clean() ?>
 

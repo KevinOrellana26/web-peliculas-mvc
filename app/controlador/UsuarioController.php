@@ -1,4 +1,5 @@
 <?php
+
 class UsuarioController extends Controller
 {
 
@@ -152,7 +153,17 @@ class UsuarioController extends Controller
                 try {
                     $m = new Usuario();
                     if ($m->insertarUsuario($nombre, $apellido, $nombreUsuario, encriptar($contrasenya), $params['fotoPerfil'], $email)) {
-                        header('Location: index.php?ctl=iniciarSesion');
+                        //header('Location: index.php?ctl=iniciarSesion'); //redirigimos a enviarCorreo.php?idUsuario=<idusuario>
+                        $idUsuario=$m->ultimoId(); //obtememos el último id insertado en la tabla
+                        $token=bin2hex(openssl_random_pseudo_bytes(16));
+
+                        //Insertar el token en la BBDD
+                        $mToken = new Token();
+                        $mToken->insertarToken($token, $idUsuario);
+
+                        $urlVerificacion = "http://localhost/DWES/unidad_8_mvc/MVC/web-peliculas-mvc/web/templates/enviarCorreo.php?token=" . urlencode($token) . "&email=" . urlencode($email) . "&nombre=" . urlencode($nombre);
+                        header("Location: ".$urlVerificacion);
+                        exit();
                     } else {
                         $params['mensaje'] = 'No se ha podido insertar el usuario. Revisa el formulario.';
                     }
@@ -176,5 +187,31 @@ class UsuarioController extends Controller
         }
 
         require __DIR__ . '/../../web/templates/formRegistro.php';
+    }
+
+    public function verificarCorreo() {
+        if (isset($_GET['token'])) {
+            $token = $_GET['token'];
+            
+            // Buscar el token en la base de datos (puedes usar el modelo Token para esto)
+            $mToken = new Token();
+            $usuarioId = $mToken->verificarToken($token);  // Este método podría retornar el ID del usuario asociado al token
+            
+            if ($usuarioId) {
+                // Si se encuentra el token, activar la cuenta del usuario
+                $mUsuario = new Usuario();
+                $mUsuario->activarUsuario($usuarioId);  // Aquí deberías tener un método para activar al usuario
+                
+                // Mensaje de éxito y redirigir
+                $params['mensaje'] = 'Cuenta activada con éxito. Ya puedes iniciar sesión.';
+                header("Location: index.php?ctl=iniciarSesion");
+                exit();
+            } else {
+                // Si no se encuentra el token, mostrar un error
+                $params['mensaje'] = 'Token inválido o expirado.';
+            }
+        } else {
+            $params['mensaje'] = 'No se recibió el token de verificación.';
+        }
     }
 }

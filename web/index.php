@@ -6,10 +6,12 @@ require_once __DIR__ . '/../app/modelo/classModelo.php';
 require_once __DIR__ . '/../app/modelo/classComentarios.php';
 require_once __DIR__ . '/../app/modelo/classPelicula.php';
 require_once __DIR__ . '/../app/modelo/classUsuario.php';
+require_once __DIR__ . '/../app/modelo/classToken.php';
 require_once __DIR__ . '/../app/controlador/Controller.php';
 require_once __DIR__ . '/../app/controlador/UsuarioController.php';
 require_once __DIR__ . '/../app/controlador/PeliculasController.php';
 require_once __DIR__ . '/../app/controlador/ComentarioController.php';
+require_once __DIR__ . '/../app/controlador/TokenController.php';
 
 //inicio de sesion
 session_start();
@@ -34,6 +36,7 @@ $map = array(
     //acciones de usuarios (autenticados o no)
     'registro' => array('controller' => 'UsuarioController', 'action' => 'registro', 'nivel_usuario' => 0),
     'iniciarSesion' => array('controller' => 'UsuarioController', 'action' => 'iniciarSesion', 'nivel_usuario' => 0),
+    'verificarCorreo' => array('controller' => 'UsuarioController', 'action' => 'verificarCorreo', 'nivel_usuario' => 0),
 
     //acciones de peliculas
     'mostrarPeliculas' => array('controller' => 'PeliculasController', 'action' => 'mostrarPeliculas', 'nivel_usuario' => 0),
@@ -43,10 +46,12 @@ $map = array(
     'busquedaCombinada' => array('controller' => 'PeliculasController', 'action' => 'busquedaCombinada', 'nivel_usuario' => 1),
     'eliminarPelicula' => array('controller' => 'PeliculasController', 'action' => 'eliminarPelicula', 'nivel_usuario' => 2),
 
-
     //acciones de comentarios
     'guardarComentario' => array('controller' => 'ComentarioController', 'action' => 'guardarComentario', 'nivel_usuario' => 1),
     'eliminarComentario' => array('controller' => 'ComentarioController', 'action' => 'eliminarComentario', 'nivel_usuario' => 2),
+
+    //acciones token
+    'verificarToken' => array('controller' => 'TokenController', 'action' => 'verificarToken', 'nivel_usuario' => 0),
 );
 
 //Parseo de la ruta
