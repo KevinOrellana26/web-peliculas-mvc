@@ -9,12 +9,12 @@
     </div>
 </div>
 
-<?php if(isset($params['peliculas']) && !empty($params['peliculas'])) : ?>
+<?php if (isset($params['peliculas']) && !empty($params['peliculas'])) : ?>
     <div class="container py-1">
         <!-- titulo-->
         <h3 class="text-center mb-4"><?php echo $params['peliculas']['titulo']; ?></h3>
 
-        <!-- 1 fila, 2 columnas. En la primer columna irá el titulo y el valor. En la segunda columna la portada --> 
+        <!-- 1 fila, 2 columnas. En la primer columna irá el titulo y el valor. En la segunda columna la portada -->
 
         <div class="row">
             <div class="col">
@@ -71,7 +71,7 @@
         <div class="row mt-4 justify-content-center">
             <div class="col-10">
                 <form action="index.php?ctl=guardarComentario" method="post">
-                <!-- <form action="index.php?ctl=iniciarSesion" method="post"> -->
+                    <!-- <form action="index.php?ctl=iniciarSesion" method="post"> -->
                     <div class="mb-3">
                         <input type="hidden" name="id_pelicula" value="<?php echo $params['peliculas']['id_pelicula']; ?>">
                         <label for="comentario" class="form-label fw-bold text-dark">Deja tu comentario:</label>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-01-2025 a las 23:49:03
+-- Tiempo de generación: 01-02-2025 a las 17:39:57
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -36,14 +36,6 @@ CREATE TABLE `comentarios` (
   `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Volcado de datos para la tabla `comentarios`
---
-
-INSERT INTO `comentarios` (`id_comentario`, `id_pelicula`, `id_usuario`, `contenido`, `fecha`) VALUES
-(5, 3, 2, 'dioooos la mejor pelicula de vengadores', '2025-01-30 20:42:00'),
-(7, 3, 2, 'me encanto[[[[', '2025-01-30 20:42:58');
-
 -- --------------------------------------------------------
 
 --
@@ -66,11 +58,9 @@ CREATE TABLE `peliculas` (
 INSERT INTO `peliculas` (`id_pelicula`, `titulo`, `descripción`, `anio`, `portada`, `categoria`) VALUES
 (1, 'La Era de Hielo', 'Una aventura en un mundo prehistórico', '2002', 'la_era_de_hielo.jpg', 'Animación'),
 (2, 'El Señor de los Anillos: La Comunidad del Anillo', 'El primer capítulo de una épica aventura', '2001', 'senor_de_los_anillos.jpg', 'Fantasía'),
-(3, 'Avengers: Endgame', 'Después de los eventos devastadores de \"Avengers: Infinity War\", el universo está en ruinas debido a las acciones de Thanos, el Titán Loco. Con la ayuda de los aliados que quedaron, los Vengadores deberán reunirse una vez más para intentar detenerlo y restaurar el orden en el universo de una vez por todas.', '2019', 'avengers_endgame.jpg', 'Acción'),
 (7, 'Spider-Man 2', 'Como si Peter Parker no tuviera suficiente con sus propios problemas, estudios y su amor por Mary Jane, ahora tiene que salvar a la ciudad de un nuevo villano, el Doctor Octopus.', '2004', 'portada_679a7634ad3724.67350380.jpg', 'Acción'),
 (10, 'We Live in Time', 'We Live in Time es una película de drama romántico dirigida por John Crowley a partir de un guion de Nick Payne. La película usa una narrativa no lineal.', '2024', 'portada_679bfb072155e6.32308744.jpg', 'Romance'),
-(11, 'Spider-Man: Across the Spider-Verse', 'Tras encontrarse con Gwen Stacy, el agradable vecindario de Brooklyn en el que vive Mike Morales se ve transportado al multiverso, donde Spiderman conocerá a nuevos personajes y vivirá aventuras increíbles.Tras encontrarse con Gwen Stacy, el agradable vecindario de Brooklyn en el que vive Mike Morales se ve transportado al multiverso, donde Spiderman conocerá a nuevos personajes y vivirá aventuras increíbles.', '2023', 'portada_679bfb49e1eb40.31056547.jpg', 'Animacion'),
-(12, 'Five Nights at Freddy\'s', 'Un problemático guardia de seguridad empieza a trabajar en la pizzería Freddy Fazbear\'s. Mientras pasa su primera noche en el trabajo, se da cuenta de que el turno de noche en Freddy\'s no será tan fácil de sobrellevar.', '2023', 'portada_679bfb8c1a0d59.65647406.jpeg', 'Terror');
+(11, 'Spider-Man: Across the Spider-Verse', 'Tras encontrarse con Gwen Stacy, el agradable vecindario de Brooklyn en el que vive Mike Morales se ve transportado al multiverso, donde Spiderman conocerá a nuevos personajes y vivirá aventuras increíbles.Tras encontrarse con Gwen Stacy, el agradable vecindario de Brooklyn en el que vive Mike Morales se ve transportado al multiverso, donde Spiderman conocerá a nuevos personajes y vivirá aventuras increíbles.', '2023', 'portada_679bfb49e1eb40.31056547.jpg', 'Animacion');
 
 -- --------------------------------------------------------
 
@@ -130,13 +120,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

@@ -32,11 +32,35 @@
             <!-- Botones Aceptar y Reset -->
             <div class="col-md-4 d-flex align-items-end justify-content-around">
                 <button type="submit" name="bCombinada" class="btn btn-primary me-2">Aceptar</button>
-                <button type="reset" class="btn btn-secondary">Borrar</button>
             </div>
         </div>
     </form>
 </div>
+<?php
+if (count($params['peliculas']) > 0) { ?>
+
+    <div class="container py-4">
+        <div class="row">
+
+
+            <?php foreach ($params['peliculas'] as $index => $pelicula) : ?>
+                <!-- Columna para cada portada -->
+                <div class="col-md-4 text-center my-3">
+                    <a href="index.php?ctl=verPelicula&id_pelicula=<?php echo $pelicula['id_pelicula'] ?>">
+                        <img src="img/<?php echo $pelicula['portada']; ?>" alt="Portada" class="img-fluid rounded shadow" style="max-height: 300px;">
+                    </a>
+                </div>
+            <?php endforeach; ?>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <p></p>
+        </div>
+    </div>
+    </div>
+
+<?php } ?>
 
 <?php $contenido = ob_get_clean() ?>
 
