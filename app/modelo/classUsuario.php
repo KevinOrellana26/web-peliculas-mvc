@@ -10,15 +10,16 @@ class Usuario extends Modelo
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function insertarUsuario($nombre, $apellido, $nombreUsuario, $contrasenya, $fotoPerfil = "default.jpg",)
+    public function insertarUsuario($nombre, $apellido, $nombreUsuario, $contrasenya, $fotoPerfil = "default.jpg", $email)
     {
-        $consulta = "INSERT INTO peliculas.usuarios (nombre, apellido, nombre_usuario, contrasenya, foto_perfil) VALUES (:nombre, :apellido, :nombreUsuario, :contrasenya, :fotoPerfil)";
+        $consulta = "INSERT INTO peliculas.usuarios (nombre, apellido, nombre_usuario, contrasenya, foto_perfil, email) VALUES (:nombre, :apellido, :nombreUsuario, :contrasenya, :fotoPerfil, :email)";
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':nombre', $nombre);
         $result->bindParam(':apellido', $apellido);
         $result->bindParam(':nombreUsuario', $nombreUsuario);
         $result->bindParam(':contrasenya', $contrasenya);
         $result->bindParam(':fotoPerfil', $fotoPerfil);
+        $result->bindParam(':email', $email);
         $result->execute();
         return $result;
     }

@@ -151,7 +151,7 @@ class UsuarioController extends Controller
                 // Si no ha habido problema creo modelo y hago inserción
                 try {
                     $m = new Usuario();
-                    if ($m->insertarUsuario($nombre, $apellido, $nombreUsuario, encriptar($contrasenya), $params['fotoPerfil'])) {
+                    if ($m->insertarUsuario($nombre, $apellido, $nombreUsuario, encriptar($contrasenya), $params['fotoPerfil'], $email)) {
                         header('Location: index.php?ctl=iniciarSesion');
                     } else {
                         $params['mensaje'] = 'No se ha podido insertar el usuario. Revisa el formulario.';
