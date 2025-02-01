@@ -58,6 +58,51 @@ class Controller
         header("location:index.php?ctl=home");
     }
 
+
+    public function tipografia()
+    {
+        $errores = [];
+
+        $selectValido = ["text-uppercase", "fw-bold", "fs-4"];
+        if (isset($_POST['tipografiaOk'])) {
+            $letraWeb = recoge('letraWeb');
+
+            // Validación de los campos del formulario
+            cSelect($letraWeb, 'letraWeb', $errores, $selectValido);
+
+            if (empty($errores)) {
+                // Si no ha habido problema, creo modelo y hago inserción
+                try {
+                    // Actualizo la cookie con el nuevo valor de $letraWeb
+                    setcookie("letraWeb", $letraWeb, time() + (86400 * 30), "/");  // Aquí se sustituye el valor de la cookie
+                } catch (Exception $e) {
+                    error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logExceptio.txt");
+                    header('Location: index.php?ctl=error');
+                } catch (Error $e) {
+                    error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logError.txt");
+                    header('Location: index.php?ctl=error');
+                }
+            } else {
+                $params['mensaje'] = 'Hay datos que no son correctos. Revisa el formulario.';
+            }
+        }
+
+        $params = array(
+            'mensaje' => 'Bienvenido a tu foro de peliculas de confianza',
+            'mensaje2' => 'Aqui tendras una gran cantidad de peliculas y comentarios de otros usuarios',
+        );
+
+        $menu = $this->cargaMenuSesiones();
+        $menu2 =
+            $this->cargaMenuAcciones();
+
+        require __DIR__ . '/../../web/templates/inicio.php';
+    }
+
+
+
+
+
     public function error()
     {
 

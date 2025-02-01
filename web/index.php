@@ -28,6 +28,8 @@ $map = array(
     'inicio' => array('controller' => 'Controller', 'action' => 'inicio', 'nivel_usuario' => 0),
     'salir' => array('controller' => 'Controller', 'action' => 'salir', 'nivel_usuario' => 1),
     'error' => array('controller' => 'Controller', 'action' => 'error', 'nivel_usuario' => 0),
+    'tipografia' => array('controller' => 'Controller', 'action' => 'tipografia', 'nivel_usuario' => 0),
+
 
     //acciones de usuarios (autenticados o no)
     'registro' => array('controller' => 'UsuarioController', 'action' => 'registro', 'nivel_usuario' => 0),

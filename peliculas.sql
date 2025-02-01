@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-02-2025 a las 17:39:57
+-- Tiempo de generación: 01-02-2025 a las 19:19:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -20,8 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `peliculas`
 --
-CREATE DATABASE IF NOT EXISTS `peliculas` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `peliculas`;
+
 -- --------------------------------------------------------
 
 --
@@ -65,6 +64,19 @@ INSERT INTO `peliculas` (`id_pelicula`, `titulo`, `descripción`, `anio`, `porta
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `token_validacion`
+--
+
+CREATE TABLE `token_validacion` (
+  `id` int(255) NOT NULL,
+  `id_usuario` int(255) NOT NULL,
+  `token` varchar(500) NOT NULL,
+  `valido_hasta` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -76,16 +88,19 @@ CREATE TABLE `usuarios` (
   `contrasenya` varchar(255) NOT NULL,
   `foto_perfil` varchar(255) DEFAULT 'default.jpg',
   `nivel_usuario` int(11) NOT NULL DEFAULT 1,
-  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `email` varchar(500) NOT NULL,
+  `validado` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `nombre_usuario`, `contrasenya`, `foto_perfil`, `nivel_usuario`, `fecha_registro`) VALUES
-(2, 'joan', 'morales', 'joan', '$2y$10$W1D9EJWoK0C.YU8g23ejPusou1RX7Ya.uVKlIG.ITMItVJ4zHXS2e', 'perfil_679a56f04a7e64.43331986.jpg', 2, '2025-01-29 16:27:28'),
-(3, 'joan', 'morales', 'joan2', '$2y$10$.TLDdI/MDSs5QoRx9761K.uvbOZWPFL/bpo.R5gJiqUFA0RaFq5VW', 'perfil_679a593c891af4.75390223.jpg', 1, '2025-01-29 16:37:16');
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `nombre_usuario`, `contrasenya`, `foto_perfil`, `nivel_usuario`, `fecha_registro`, `email`, `validado`) VALUES
+(2, 'joan', 'morales', 'joan', '$2y$10$W1D9EJWoK0C.YU8g23ejPusou1RX7Ya.uVKlIG.ITMItVJ4zHXS2e', 'perfil_679a56f04a7e64.43331986.jpg', 2, '2025-01-29 16:27:28', '', 0),
+(3, 'joan', 'morales', 'joan2', '$2y$10$.TLDdI/MDSs5QoRx9761K.uvbOZWPFL/bpo.R5gJiqUFA0RaFq5VW', 'perfil_679a593c891af4.75390223.jpg', 1, '2025-01-29 16:37:16', '', 0),
+(4, 'joan', 'morales', 'joan3', '$2y$10$RzjqvqDAAt0WoCMuFfFfEepnxj7oc88jF5pWYsIaEXxhLi.w8scIe', 'perfil_679e5828b52ca9.28225713.gif', 1, '2025-02-01 17:21:44', '', 0);
 
 --
 -- Índices para tablas volcadas
@@ -104,6 +119,14 @@ ALTER TABLE `comentarios`
 --
 ALTER TABLE `peliculas`
   ADD PRIMARY KEY (`id_pelicula`);
+
+--
+-- Indices de la tabla `token_validacion`
+--
+ALTER TABLE `token_validacion`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_usuario` (`id_usuario`),
+  ADD UNIQUE KEY `token` (`token`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -129,10 +152,16 @@ ALTER TABLE `peliculas`
   MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT de la tabla `token_validacion`
+--
+ALTER TABLE `token_validacion`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -144,6 +173,12 @@ ALTER TABLE `usuarios`
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_pelicula`) REFERENCES `peliculas` (`id_pelicula`) ON DELETE CASCADE,
   ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `token_validacion`
+--
+ALTER TABLE `token_validacion`
+  ADD CONSTRAINT `FK_id_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

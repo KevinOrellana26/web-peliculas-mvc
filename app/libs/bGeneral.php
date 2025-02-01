@@ -271,9 +271,9 @@ function cRadio(string $text, string $campo, array &$errores, array $valores, bo
     return false;
 }
 
-function cSelect(string $text, string $campo, array &$errores, array $valores, bool $requerido = TRUE)
+function cSelect(string $text, string $campo, array &$errores, array $valores, bool $requerido = true)
 {
-    if (array_key_exists($text, $valores)) {
+    if (in_array($text, $valores, true)) { // <-- Cambio aquí
         return true;
     }
     if (!$requerido && $text == "") {
@@ -281,6 +281,16 @@ function cSelect(string $text, string $campo, array &$errores, array $valores, b
     }
     $errores[$campo] = "Error en el campo $campo";
     return false;
+}
+
+
+function cEmail(string $email, string $campo, array &$errores)
+{
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errores[$campo] = "Error en el campo $campo"; // Guardamos el error
+        return false; // Retornamos false porque el email no es válido
+    }
+    return true; // Retornamos true porque el email es válido
 }
 /**
  * Funcion cCheck

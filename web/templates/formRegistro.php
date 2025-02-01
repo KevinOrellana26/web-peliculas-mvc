@@ -37,6 +37,14 @@
         </div>
         <!-- Nombre de usuario -->
         <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" value="<?php echo $params['email'] ?>" id="email" placeholder="Email">
+            <div class="text-danger">
+                <?php echo (isset($errores['email'])) ? "$errores[email]" : ""; ?>
+            </div>
+        </div>
+        <!-- Nombre de usuario -->
+        <div class="mb-3">
             <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
             <input type="text" class="form-control" name="nombreUsuario" value="<?php echo $params['nombreUsuario'] ?>" id="nombreUsuario" placeholder="Nombre de usuario">
             <div class="text-danger">
@@ -58,6 +66,8 @@
         </div>
         <!-- Foto de perfil -->
         <div class="mb-3">
+            <!-- Foto de Perfil -->
+
             <label for="fotoPerfil" class="form-label">Foto de Perfil</label>
             <input type="file" class="form-control" name="fotoPerfil" accept="img/*" id="fotoPerfil">
             <div class="text-danger">

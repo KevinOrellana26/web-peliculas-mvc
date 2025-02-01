@@ -8,7 +8,8 @@ class UsuarioController extends Controller
         try {
             $params = array(
                 'nombreUsuario' => '',
-                'contrasenya' => ''
+                'contrasenya' => '',
+                'tipografia' => '',
             );
             $menu = $this->cargaMenuSesiones();
             $menu2 =
@@ -33,6 +34,7 @@ class UsuarioController extends Controller
                             $_SESSION['idUser'] = $usuario['id_usuario'];
                             $_SESSION['nombreUsuario'] = $usuario['nombre_usuario'];
                             $_SESSION['nivel_usuario'] = $usuario['nivel_usuario'];
+
                             $_SESSION['fotoPerfil'] = $m->buscarFotoPerfil($nombreUsuario);
 
                             header('Location: index.php?ctl=inicio');
@@ -40,7 +42,7 @@ class UsuarioController extends Controller
                     } else {
                         $params = array(
                             'nombre_usuario' => $nombreUsuario,
-                            'contrasenya' => $contrasenya
+                            'contrasenya' => $contrasenya,
                         );
                         $params['mensaje'] = 'No se ha podido iniciar sesión. Revisa el formulario.';
                     }
@@ -81,9 +83,11 @@ class UsuarioController extends Controller
         $params = [
             'nombre' => '',
             'apellido' => '',
+            'email' => '',
             'nombreUsuario' => '',
             'contrasenya' => '',
         ];
+
 
         $errores = [];
 
@@ -91,13 +95,16 @@ class UsuarioController extends Controller
             $nombre = recoge('nombre');
             $apellido = recoge('apellido');
             $nombreUsuario = recoge('nombreUsuario');
+            $email = recoge('email');
             $contrasenya = recoge('contrasenya');
             $confirmarContrasenya = recoge('contrasenya2');
+
 
             // Validación de los campos del formulario
             cTexto($nombre, "nombre", $errores);
             cTexto($apellido, "apellido", $errores);
             cUser($contrasenya, "contrasenya", $errores);
+            cEmail($email, 'email', $errores);
             cUser($nombreUsuario, "nombreUsuario", $errores);
 
             // Comprobar si el nombre de usuario ya está registrado
@@ -160,8 +167,9 @@ class UsuarioController extends Controller
                 $params = array(
                     'nombre' => $nombre,
                     'apellido' => $apellido,
+                    'email' => $email,
                     'nombreUsuario' => $nombreUsuario,
-                    'contrasenya' => $contrasenya
+                    'contrasenya' => $contrasenya,
                 );
                 $params['mensaje'] = 'Hay datos que no son correctos. Revisa el formulario.';
             }
