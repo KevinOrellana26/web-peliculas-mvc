@@ -131,9 +131,6 @@ class PeliculasController extends Controller
                 // Cargar la plantilla de resultados
                 $menu = $this->cargaMenuSesiones();
                 $menu2 = $this->cargaMenuAcciones();
-
-                require __DIR__ . '/../../web/templates/busquedaCombinadaResult.php';
-                return;
             }
         } catch (Exception $e) {
             error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logExceptio.txt");
