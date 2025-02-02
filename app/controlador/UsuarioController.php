@@ -3,7 +3,6 @@
 class UsuarioController extends Controller
 {
 
-
     public function iniciarSesion()
     {
         try {

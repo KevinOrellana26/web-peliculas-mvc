@@ -1,8 +1,6 @@
 <?php
 class PeliculasController extends Controller
 {
-
-
     public function mostrarPeliculas()
     {
         try {
