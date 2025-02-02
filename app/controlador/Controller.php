@@ -24,7 +24,6 @@ class Controller
 
     public function home()  //Carga del Home
     {
-
         $params = array(
             'mensaje' => 'Bienvenido a tu foro de peliculas de confianza',
             'mensaje2' => 'Aqui tendras una gran cantidad de peliculas y comentarios de otros usuarios',
@@ -38,8 +37,6 @@ class Controller
     }
     public function inicio()
     {
-
-
         $params = array(
             'mensaje' => 'Bienvenido a tu foro de peliculas de confianza',
             'mensaje2' => 'Aqui tendras una gran cantidad de peliculas y comentarios de otros usuarios',
@@ -99,13 +96,8 @@ class Controller
             $this->cargaMenuAcciones();
     }
 
-
-
-
-
     public function error()
     {
-
         $menu = $this->cargaMenuSesiones();
         $menu2 =
             $this->cargaMenuAcciones();
