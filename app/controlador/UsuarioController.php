@@ -30,15 +30,22 @@ class UsuarioController extends Controller
                     if ($usuario = $m->consultarUsuario($nombreUsuario)) {
                         // Compruebo si el password es correcto
                         if (comprobarhash($contrasenya, $usuario['contrasenya'])) {
-                            // Obtenemos el resto de datos
+                            if ($m->consultaValido($nombreUsuario) == 1) {
+                                // Obtenemos el resto de datos
+                                $_SESSION['idUser'] = $usuario['id_usuario'];
+                                $_SESSION['nombreUsuario'] = $usuario['nombre_usuario'];
+                                $_SESSION['nivel_usuario'] = $usuario['nivel_usuario'];
 
-                            $_SESSION['idUser'] = $usuario['id_usuario'];
-                            $_SESSION['nombreUsuario'] = $usuario['nombre_usuario'];
-                            $_SESSION['nivel_usuario'] = $usuario['nivel_usuario'];
+                                $_SESSION['fotoPerfil'] = $m->buscarFotoPerfil($nombreUsuario);
 
-                            $_SESSION['fotoPerfil'] = $m->buscarFotoPerfil($nombreUsuario);
-
-                            header('Location: index.php?ctl=inicio');
+                                header('Location: index.php?ctl=inicio');
+                            } else {
+                                $params = array(
+                                    'nombre_usuario' => $nombreUsuario,
+                                    'contrasenya' => $contrasenya,
+                                );
+                                $params['mensaje'] = 'No se ha podido iniciar sesión. Usuario no validado.';
+                            }
                         }
                     } else {
                         $params = array(
@@ -144,25 +151,33 @@ class UsuarioController extends Controller
                         $params['fotoPerfil'] = $nombreUnico; // Guardar el nombre del archivo en los parámetros
                     }
                 }
-            } else {
-                $errores['fotoPerfil'] = "Error al subir la foto de perfil.";
             }
+
 
             if (empty($errores)) {
                 // Si no ha habido problema creo modelo y hago inserción
                 try {
                     $m = new Usuario();
+                    if (empty($params['fotoPerfil'])) {
+                        $params['fotoPerfil'] = "default.jpg";
+                    }
+
                     if ($m->insertarUsuario($nombre, $apellido, $nombreUsuario, encriptar($contrasenya), $params['fotoPerfil'], $email)) {
                         //header('Location: index.php?ctl=iniciarSesion'); //redirigimos a enviarCorreo.php?idUsuario=<idusuario>
-                        $idUsuario=$m->ultimoId(); //obtememos el último id insertado en la tabla
-                        $token=bin2hex(openssl_random_pseudo_bytes(16));
+                        $idUsuario = $m->ultimoId(); //obtememos el último id insertado en la tabla
+                        $token = bin2hex(openssl_random_pseudo_bytes(16));
 
                         //Insertar el token en la BBDD
                         $mToken = new Token();
                         $mToken->insertarToken($token, $idUsuario);
 
-                        $urlVerificacion = "http://localhost/DWES/unidad_8_mvc/MVC/web-peliculas-mvc/web/templates/enviarCorreo.php?token=" . urlencode($token) . "&email=" . urlencode($email) . "&nombre=" . urlencode($nombre);
-                        header("Location: ".$urlVerificacion);
+                        $baseUrl = "http://localhost" . dirname(
+                            $_SERVER['PHP_SELF'],
+                            2
+                        );
+                        $urlVerificacion = $baseUrl . "/web/templates/enviarCorreo.php?token=" . urlencode($token) . "&email=" . urlencode($email) . "&nombre=" . urlencode($nombre);;
+
+                        header("Location: " . $urlVerificacion);
                         exit();
                     } else {
                         $params['mensaje'] = 'No se ha podido insertar el usuario. Revisa el formulario.';
@@ -187,31 +202,5 @@ class UsuarioController extends Controller
         }
 
         require __DIR__ . '/../../web/templates/formRegistro.php';
-    }
-
-    public function verificarCorreo() {
-        if (isset($_GET['token'])) {
-            $token = $_GET['token'];
-            
-            // Buscar el token en la base de datos (puedes usar el modelo Token para esto)
-            $mToken = new Token();
-            $usuarioId = $mToken->verificarToken($token);  // Este método podría retornar el ID del usuario asociado al token
-            
-            if ($usuarioId) {
-                // Si se encuentra el token, activar la cuenta del usuario
-                $mUsuario = new Usuario();
-                $mUsuario->activarCuenta($usuarioId);  // Aquí deberías tener un método para activar al usuario
-                
-                // Mensaje de éxito y redirigir
-                $params['mensaje'] = 'Cuenta activada con éxito. Ya puedes iniciar sesión.';
-                header("Location: index.php?ctl=iniciarSesion");
-                exit();
-            } else {
-                // Si no se encuentra el token, mostrar un error
-                $params['mensaje'] = 'Token inválido o expirado.';
-            }
-        } else {
-            $params['mensaje'] = 'No se recibió el token de verificación.';
-        }
     }
 }

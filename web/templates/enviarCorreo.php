@@ -1,6 +1,8 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 require __DIR__ . '/../../PHPMailer/src/Exception.php';
 require __DIR__ . '/../../PHPMailer/src/PHPMailer.php';
 require __DIR__ . '/../../PHPMailer/src/SMTP.php';
@@ -25,22 +27,22 @@ try {
 
     // Usamos el token para crear el enlace de verificación
     $token = $_GET['token'];
-    $verificarEnlace = "http://localhost/DWES/unidad_8_mvc/MVC/web-peliculas-mvc/web/index.php?ctl=verificarToken&token=" . urlencode($token);
+    $baseUrl = "http://localhost" . dirname($_SERVER['PHP_SELF'], 2);
+    $verificarEnlace = $baseUrl . "/index.php?ctl=verificarToken&token=" . urlencode($token);
 
     $mail->Body = '
         <h1>Hola, verifica tu cuenta</h1>
         <p>Para activar tu cuenta, haz clic en el siguiente enlace:</p>
         <p>
-            <a href="'.$verificarEnlace.'">
+            <a href="' . $verificarEnlace . '">
                Verificar cuenta
             </a>
         </p>
     ';
-    $mail->AltBody = "Hola, verifica tu cuenta copiando y pegando este enlace en tu navegador: ".$verificarEnlace;
+    $mail->AltBody = "Hola, verifica tu cuenta copiando y pegando este enlace en tu navegador: " . $verificarEnlace;
 
     $mail->send();
     echo 'El mensaje se ha enviado con éxito';
 } catch (Exception $e) {
     echo "El mensaje no se ha enviado: {$mail->ErrorInfo}";
 }
-?>

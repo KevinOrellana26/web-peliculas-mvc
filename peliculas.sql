@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-02-2025 a las 19:19:15
+-- Tiempo de generación: 02-02-2025 a las 17:48:49
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -100,9 +100,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `nombre_usuario`, `contrasenya`, `foto_perfil`, `nivel_usuario`, `fecha_registro`, `email`, `validado`) VALUES
-(2, 'joan', 'morales', 'joan', '$2y$10$W1D9EJWoK0C.YU8g23ejPusou1RX7Ya.uVKlIG.ITMItVJ4zHXS2e', 'perfil_679a56f04a7e64.43331986.jpg', 2, '2025-01-29 16:27:28', '', 0),
-(3, 'joan', 'morales', 'joan2', '$2y$10$.TLDdI/MDSs5QoRx9761K.uvbOZWPFL/bpo.R5gJiqUFA0RaFq5VW', 'perfil_679a593c891af4.75390223.jpg', 1, '2025-01-29 16:37:16', '', 0),
-(4, 'joan', 'morales', 'joan3', '$2y$10$RzjqvqDAAt0WoCMuFfFfEepnxj7oc88jF5pWYsIaEXxhLi.w8scIe', 'perfil_679e5828b52ca9.28225713.gif', 1, '2025-02-01 17:21:44', '', 0);
+(14, 'Admin', 'istrador', 'Administrador', '$2y$10$YW7uyeC9meQEoT04Jh5GXu5jKMKE6Et4mSM8o5iw.3Bpl5tiFaHS.', 'perfil_679f9eaa65e1d0.30866561.gif', 2, '2025-02-02 16:34:50', 'joamorand@alu.edu.gva.es', 1),
+(15, 'Joan', 'Kevin', 'Usuario', '$2y$10$LxSCMj0x3SXuyLaNEBT.qe0BssgVyowwczWAIPeeuhY4SBvFTt7zW', 'perfil_679f9efcc962b4.81436895.jpg', 1, '2025-02-02 16:36:12', 'joamorand@alu.edu.gva.es', 1),
+(18, 'default', 'default', 'default', '$2y$10$ChcKDoNGRX4SNUN.xOI0yOYO5RdsWMo07IpDmGequMQ/gMLhs1sKS', 'default.jpg', 1, '2025-02-02 16:47:41', 'joamorand@alu.edu.gva.es', 1);
 
 --
 -- Índices para tablas volcadas
@@ -157,13 +157,13 @@ ALTER TABLE `peliculas`
 -- AUTO_INCREMENT de la tabla `token_validacion`
 --
 ALTER TABLE `token_validacion`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restricciones para tablas volcadas
