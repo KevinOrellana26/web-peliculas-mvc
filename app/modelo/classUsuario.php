@@ -10,7 +10,7 @@ class Usuario extends Modelo
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function insertarUsuario($nombre, $apellido, $nombreUsuario, $contrasenya, $fotoPerfil = "default.jpg", $email)
+    public function insertarUsuario($nombre, $apellido, $nombreUsuario, $contrasenya, $fotoPerfil, $email)
     {
         $consulta = "INSERT INTO peliculas.usuarios (nombre, apellido, nombre_usuario, contrasenya, foto_perfil, email) VALUES (:nombre, :apellido, :nombreUsuario, :contrasenya, :fotoPerfil, :email)";
         $result = $this->conexion->prepare($consulta);
@@ -32,14 +32,26 @@ class Usuario extends Modelo
         return $result->fetchColumn(); // Devuelve solo el valor de la columna 'foto_perfil'
     }
 
-    public function ultimoId(){
+    public function ultimoId()
+    {
         return $this->conexion->lastInsertId(); //metodo para sacar el último ID insertado en la base de datos
     }
 
-    public function activarCuenta($idUsuario){
+    public function activarCuenta($idUsuario)
+    {
         $consulta = "UPDATE usuarios SET validado = 1 WHERE id_usuario=:idUsuario";
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(':idUsuario', $idUsuario);
         return $result->execute(); //devuelve true si la actualización fue exitosa
+    }
+
+    public function consultaValido($nombreUsuario)
+    {
+
+        $consulta = "SELECT validado FROM peliculas.usuarios WHERE nombre_usuario = :nombreUsuario";
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':nombreUsuario', $nombreUsuario);
+        $result->execute();
+        return $result->fetchColumn(); // Devuelve solo el valor de la columna solicitada
     }
 }

@@ -53,8 +53,8 @@ class Controller
 
     public function salir()
     {
+        session_unset();
         session_destroy();
-
         header("location:index.php?ctl=home");
     }
 
@@ -75,6 +75,8 @@ class Controller
                 try {
                     // Actualizo la cookie con el nuevo valor de $letraWeb
                     setcookie("letraWeb", $letraWeb, time() + (86400 * 30), "/");  // Aquí se sustituye el valor de la cookie
+                    header('Location: index.php');
+                    exit();
                 } catch (Exception $e) {
                     error_log($e->getMessage() . microtime() . PHP_EOL, 3, "../app/log/logExceptio.txt");
                     header('Location: index.php?ctl=error');
@@ -95,8 +97,6 @@ class Controller
         $menu = $this->cargaMenuSesiones();
         $menu2 =
             $this->cargaMenuAcciones();
-
-        require __DIR__ . '/../../web/templates/inicio.php';
     }
 
 
