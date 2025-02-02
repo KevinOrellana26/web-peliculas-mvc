@@ -200,7 +200,7 @@ class UsuarioController extends Controller
             if ($usuarioId) {
                 // Si se encuentra el token, activar la cuenta del usuario
                 $mUsuario = new Usuario();
-                $mUsuario->activarUsuario($usuarioId);  // Aquí deberías tener un método para activar al usuario
+                $mUsuario->activarCuenta($usuarioId);  // Aquí deberías tener un método para activar al usuario
                 
                 // Mensaje de éxito y redirigir
                 $params['mensaje'] = 'Cuenta activada con éxito. Ya puedes iniciar sesión.';
